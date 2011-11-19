@@ -1,0 +1,39 @@
+apply plugin:'groovy'
+apply plugin:'idea'
+apply plugin: "eclipse"
+
+def spockVersion = '0.5-groovy-1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    groovy 'org.codehaus.groovy:groovy-all:1.8.3'
+    testCompile 'junit:junit:4.8.1'
+    testCompile "org.spockframework:spock-core:$spockVersion"
+    testRuntime "com.h2database:h2:1.2.147"
+}
+
+sourceSets {
+    main {
+        java { srcDirs = [] }
+        groovy { srcDir 'src' }
+    }
+    test {
+        java { srcDirs = [] }
+        groovy { srcDir 'test' }
+    }
+}
+
+idea {
+    project {
+        javaVersion = 1.6
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.0-milestone-3'
+}
+
+
