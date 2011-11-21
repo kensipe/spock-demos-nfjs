@@ -10,29 +10,6 @@ import spock.lang.Unroll
 
 class gMockAccountDaoSpec extends Specification {
 
-    def "deposit into account test"() {
-        def TEST_ACCOUNT_NO = "1234"
-        def account = new Account(TEST_ACCOUNT_NO, 100)
-
-        AccountDao mock = Mock()
-
-        def service = new AccountServiceImpl(mock)
-
-        when:
-        service.deposit TEST_ACCOUNT_NO, 50
-
-        then:
-        1 * mock.findAccount(TEST_ACCOUNT_NO) >> account
-        _ * mock.updateAccount(_)
-        0 * mock.createAccount(_)
-        _ * mock./(update | create)Account/(_)
-
-        and:
-        account.balance == 150
-
-        and:
-        account.balance > 100
-    }
 
     def "deposit into account test refactor"() {
 
@@ -55,4 +32,54 @@ class gMockAccountDaoSpec extends Specification {
         "101" | new Account("101", 100) | 50  | 150
         "101" | new Account("101", 0)   | 50  | 50
     }
+
+    def "deposit into account test"() {
+        def TEST_ACCOUNT_NO = "1234"
+        def account = new Account(TEST_ACCOUNT_NO, 100)
+
+        AccountDao mock = Mock()
+
+        def service = new AccountServiceImpl(mock)
+
+        when:
+        service.deposit TEST_ACCOUNT_NO, 50
+
+        then:
+        (_..2) * mock.findAccount("1234") >> account
+        _ * mock.updateAccount(_)
+        0 * mock.createAccount(_)
+        _ * mock./(update | create)Account/(_)
+
+        and:
+        account.balance == 150
+
+        and:
+        account.balance > 100
+    }
+
+    def "deposit into account guarantee order of execution"() {
+        def TEST_ACCOUNT_NO = "1234"
+        def account = new Account(TEST_ACCOUNT_NO, 100)
+
+        AccountDao mock = Mock()
+
+        def service = new AccountServiceImpl(mock)
+
+        when:
+        service.deposit TEST_ACCOUNT_NO, 50
+
+        then:
+        1 * mock.findAccount("1234") >> account
+        0 * mock.createAccount(_)
+
+        then:
+        _ * mock.updateAccount(_)
+
+        and:
+        account.balance == 150
+
+        and:
+        account.balance > 100
+    }
+
 }
