@@ -33,6 +33,7 @@ class SimpleInterestCalculatorSpec extends Specification {
         year = 2
     }
 
+    @Unroll
     def "showing off vars list in calc"() {
         def calc = new SimpleInterestCalculator(rate: 0.05)
 
@@ -44,7 +45,6 @@ class SimpleInterestCalculatorSpec extends Specification {
         amt << [10000, 100]
         year << [2, 5]
     }
-
 
     def "show of data table"() {
         def calc = new SimpleInterestCalculator(rate: 0.05)

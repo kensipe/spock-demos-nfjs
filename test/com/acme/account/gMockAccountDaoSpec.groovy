@@ -14,6 +14,9 @@ class gMockAccountDaoSpec extends Specification {
     def "deposit into account test refactor"() {
 
         def mock = Mock(AccountDao)
+        // this could be...
+//        AccountDao mock = Mock()
+        
         def service = new AccountServiceImpl(mock)
 
         when:
@@ -49,6 +52,14 @@ class gMockAccountDaoSpec extends Specification {
         _ * mock.updateAccount(_)
         0 * mock.createAccount(_)
         _ * mock./(update | create)Account/(_)
+        /**
+         * Above are examples of what is possible with mocking in spock
+         * 1. (_..2) or (2.._) provides range
+         * 2. _ * mock.updateAccount() really is mock.updateAccount()
+         * 3. 0 * mock.createAccount() is this should not be called
+         * 4. _ * mock./(update | create)Account/(_) is a regex of updateAccount and createAccount
+         * ** just because it can be done doesn't mean it should be done:)
+         */
 
         and:
         account.balance == 150
@@ -73,7 +84,12 @@ class gMockAccountDaoSpec extends Specification {
         0 * mock.createAccount(_)
 
         then:
+        // this verifies order... update has to come after find
         _ * mock.updateAccount(_)
+
+        then:
+        // and after update... nothing else should be called on the mock
+        0 * mock._
 
         and:
         account.balance == 150
