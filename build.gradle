@@ -29,6 +29,7 @@ sourceSets {
 idea {
     project {
         javaVersion = 1.6
+ 	jdkName = '1.6' 
     }
 }
 
