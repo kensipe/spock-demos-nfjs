@@ -97,5 +97,4 @@ class gMockAccountDaoSpec extends Specification {
         and:
         account.balance > 100
     }
-
 }

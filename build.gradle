@@ -12,6 +12,7 @@ dependencies {
     groovy 'org.codehaus.groovy:groovy-all:1.8.3'
     testCompile 'junit:junit:4.8.1'
     testCompile "org.spockframework:spock-core:$spockVersion"
+//    testCompile "org.spockframework:spock-spring:$spockVersion"  //need if you are doing spring... fails without the spring dependencies
     testRuntime "com.h2database:h2:1.2.147"
 }
 
