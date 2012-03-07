@@ -1,6 +1,6 @@
 # Spock Testing Example Code for NFJS
 ## purpose
-this is a series of comparisons of junit, groovy test cases, and spock presented by Ken Sipe
+This is a series of comparisons of junit, groovy test cases, and spock presented by Ken Sipe
 
 ## getting started
 The code is provided using gradle.  So after you clone the repo, just type:
