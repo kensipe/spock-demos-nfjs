@@ -71,5 +71,4 @@ class SimpleInterestCalculatorSpec extends Specification {
         def calc = new SimpleInterestCalculator(rate: 0.05)
         1000.0 == calc.calculate(10000, -1)
     }
-
 }
