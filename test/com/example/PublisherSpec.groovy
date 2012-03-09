@@ -29,8 +29,8 @@ class PublisherSpec extends Specification {
         def subscriber2 = Mock(Subscriber)
 
         def publisher = new Publisher()
-        publisher.add(subscriber1)
-        publisher.add(subscriber2)
+        publisher.subscribers << subscriber1
+        publisher.subscribers << subscriber2
 
         when:
         publisher.fire("event")
@@ -50,8 +50,7 @@ class PublisherSpec extends Specification {
         def subscriber2 = Mock(Subscriber)
 
         def publisher = new Publisher()
-        publisher.add(subscriber1)
-        publisher.add(subscriber2)
+        publisher.subscribers << subscriber1 << subscriber2
 
         when:
         publisher.fire("event")
@@ -70,8 +69,7 @@ class PublisherSpec extends Specification {
         def subscriber2 = Mock(Subscriber)
 
         def publisher = new Publisher()
-        publisher.add(subscriber1)
-        publisher.add(subscriber2)
+        publisher.subscribers << subscriber1 << subscriber2
 
         when:
         publisher.fire("event")
@@ -88,5 +86,21 @@ class PublisherSpec extends Specification {
      * subscriber1.receive(_) >>> ["ok", "ok", "NotOK"]
      * a series of returns
      */
+
+    def "events are published a subscriber throws an exception"() {
+        def subscriber1 = Mock(Subscriber)
+        def subscriber2 = Mock(Subscriber)
+
+        def publisher = new Publisher()
+        publisher.subscribers << subscriber1 << subscriber2
+
+        when:
+        publisher.fire("event")
+
+        then:
+        1 * subscriber1.receive("event")  >> { throw new Exception() }
+        1 * subscriber2.receive("event")
+    }
+
 
 }

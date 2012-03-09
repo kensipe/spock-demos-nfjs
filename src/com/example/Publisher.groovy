@@ -14,7 +14,11 @@ class Publisher {
 
     def fire(String s) {
         subscribers.each {
-            it.receive(s)
+            try {
+                it.receive(s)
+            } catch (Exception e) {
+                // do something magical
+            }
         }
     }
 }
