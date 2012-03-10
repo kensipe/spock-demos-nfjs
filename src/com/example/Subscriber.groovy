@@ -1,7 +1,7 @@
 package com.example
 
 /**
- * 
+ *
  * @author ksipe
  */
 interface Subscriber {

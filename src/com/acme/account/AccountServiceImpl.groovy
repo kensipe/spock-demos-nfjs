@@ -1,10 +1,10 @@
 package com.acme.account
 
 /**
- * 
+ *
  * @author ksipe
  */
-class AccountServiceImpl implements AccountService{
+class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 
     public AccountServiceImpl(AccountDao accountDao) {

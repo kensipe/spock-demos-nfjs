@@ -17,7 +17,7 @@ class gMockMemoryAccountDaoTest extends GroovyTestCase {
 
         def mock = new MockFor(AccountDao)
         mock.demand.findAccount(TEST_ACCOUNT_NO) { account }
-        mock.demand.updateAccount(account) { assertEquals 150, account.balance  }
+        mock.demand.updateAccount(account) { assertEquals 150, account.balance }
 
         def dao = mock.proxyDelegateInstance()
         def service = new AccountServiceImpl(dao)

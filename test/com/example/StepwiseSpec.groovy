@@ -15,8 +15,6 @@ class StepwiseSpec extends Specification {
      * that you want to test first in order to run some other tests.  This allows the Spec to fail quickly.
      * the first test in order written that fails... stops all other feature tests.
      */
-
-
     def "step 1"() {
         expect: true
     }
