@@ -1,7 +1,7 @@
 package com.math
 
-import spock.lang.Specification
 import com.extensions.Report
+import spock.lang.Specification
 
 /**
  * shows off the spock extension of reports
@@ -9,7 +9,7 @@ import com.extensions.Report
  */
 
 @Report
-class SimpleInterestCalculatorExtensionSpec  extends Specification {
+class SimpleInterestCalculatorExtensionSpec extends Specification {
 
     def "interest rate calcs with Simple calculator"() {
 

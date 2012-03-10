@@ -1,9 +1,5 @@
 package com.acme.account;
 
-import com.acme.account.Account;
-import com.acme.account.AccountNotFoundException;
-import com.acme.account.DuplicateAccountException;
-import com.acme.account.InMemoryAccountDao;
 import org.junit.Before;
 import org.junit.Test;
 

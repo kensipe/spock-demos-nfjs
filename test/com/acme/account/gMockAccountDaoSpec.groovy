@@ -1,7 +1,6 @@
 package com.acme.account
 
 import spock.lang.Specification
-import spock.lang.Unroll
 
 /**
  *
@@ -16,7 +15,7 @@ class gMockAccountDaoSpec extends Specification {
         def mock = Mock(AccountDao)
         // this could be...
 //        AccountDao mock = Mock()
-        
+
         def service = new AccountServiceImpl(mock)
 
         when:

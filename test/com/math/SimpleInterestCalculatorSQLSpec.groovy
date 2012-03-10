@@ -1,10 +1,9 @@
 package com.math
 
-import spock.lang.FailsWith
-import spock.lang.Specification
-import spock.lang.Unroll
 import groovy.sql.Sql
 import spock.lang.Shared
+import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  *

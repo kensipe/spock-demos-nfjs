@@ -1,16 +1,16 @@
 package com.example
 
-import spock.lang.Specification
+import java.util.concurrent.Executors
 import org.junit.Rule
-import org.junit.rules.TestName
 import org.junit.rules.TemporaryFolder
+import org.junit.rules.TestName
 import spock.lang.AutoCleanup
 import spock.lang.Ignore
 import spock.lang.Issue
-import java.util.concurrent.Executors
+import spock.lang.Specification
 
 /**
- * 
+ *
  * @author ksipe
  */
 class RuleExampleSpec extends Specification {
@@ -28,7 +28,7 @@ class RuleExampleSpec extends Specification {
     }
 
     def "temp folder is guarenteed to be deleted at the end of a test"() {
-        File createdFile= tempDir.newFile("temp.txt");
+        File createdFile = tempDir.newFile("temp.txt");
 
         expect: true
     }
@@ -39,7 +39,7 @@ class RuleExampleSpec extends Specification {
     }
 
     def "testing the input stream and threadpool"() {
-        File createdFile= tempDir.newFile("temp.txt");
+        File createdFile = tempDir.newFile("temp.txt");
 
         @AutoCleanup
         def input = new FileInputStream(createdFile.absolutePath)

@@ -1,20 +1,21 @@
 package com.example
 
 /**
- * 
+ *
  * @author ksipe
  */
+
+import com.acme.account.AccountDao
 import javax.annotation.Resource
 import spock.lang.Specification
-import com.acme.account.AccountDao
 
 // Spring imports omitted for brevity
 
 //@ContextConfiguration(locations = "appcontext.xml")
 class SpringExampleSpec extends Specification {
 
-  @Resource
-  AccountDao email
+    @Resource
+    AccountDao email
 
 //  @Autowired
 //  ApplicationContext context
