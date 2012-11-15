@@ -2,15 +2,15 @@ apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: "eclipse"
 
-def spockVersion = '0.5-groovy-1.8'
+def spockVersion = '0.7-groovy-2.0'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    groovy 'org.codehaus.groovy:groovy-all:1.8.3'
-    testCompile 'junit:junit:4.8.1'
+    groovy 'org.codehaus.groovy:groovy-all:2.0.5'
+    testCompile 'junit:junit:4.10'
     testCompile "org.spockframework:spock-core:$spockVersion"
 //    testCompile "org.spockframework:spock-spring:$spockVersion"  //need if you are doing spring... fails without the spring dependencies
     testRuntime "com.h2database:h2:1.2.147"
