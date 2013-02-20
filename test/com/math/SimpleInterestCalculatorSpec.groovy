@@ -47,6 +47,7 @@ class SimpleInterestCalculatorSpec extends Specification {
     }
 
     def "show of data table"() {
+        given:
         def calc = new SimpleInterestCalculator(rate: 0.05)
 
         expect:
@@ -56,7 +57,6 @@ class SimpleInterestCalculatorSpec extends Specification {
         interest | amt     | year
         1000.0   | 10000   | 2
         25.0     | value() | 5
-
     }
 
 
