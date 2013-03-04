@@ -22,6 +22,7 @@ class SimpleInterestCalculatorSQLSpec extends Specification {
 
     @Unroll
     def "showing off vars list in calc"() {
+        given:
         def calc = new SimpleInterestCalculator(rate: 0.05)
 
         expect:

@@ -4,6 +4,10 @@ import spock.lang.FailsWith
 import spock.lang.Specification
 import spock.lang.Unroll
 
+// hamcrest requires, runtime of core, plus the matchers, plus that or expect
+import static spock.util.matcher.HamcrestMatchers.closeTo
+import static spock.util.matcher.HamcrestSupport.that
+
 /**
  *
  * @author ksipe
@@ -70,5 +74,13 @@ class SimpleInterestCalculatorSpec extends Specification {
         expect:
         def calc = new SimpleInterestCalculator(rate: 0.05)
         1000.0 == calc.calculate(10000, -1)
+    }
+
+    def "hamcrest values"() {
+        def calc = new SimpleInterestCalculator()
+
+        expect:
+        that calc.subtract(2.0, 1.1), closeTo(0.9, 0.1)
+
     }
 }
