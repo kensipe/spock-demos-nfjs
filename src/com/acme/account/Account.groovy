@@ -7,6 +7,7 @@ package com.acme.account
 class Account {
     String accountNo;
     double balance;
+    AccountType type = new AccountType()
 
 
 
