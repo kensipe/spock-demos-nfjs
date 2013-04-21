@@ -3,12 +3,13 @@ package com.example
 import spock.lang.Issue
 import spock.lang.Narrative
 import spock.lang.Specification
+import spock.lang.Title
 
 /**
  *
  * @author kensipe
  */
-
+@Title("this has a title")
 @Narrative("""
 this is a description of what this thing is suppose to do
 """)

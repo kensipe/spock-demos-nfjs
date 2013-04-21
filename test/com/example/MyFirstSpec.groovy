@@ -18,7 +18,7 @@ class MyFirstSpec extends Specification {
 
         setup:
         def stack = new Stack()
-        def elem = "push me"
+        def elem = "Push me"
 
         when:
         stack.pop()
@@ -40,7 +40,7 @@ class MyFirstSpec extends Specification {
         then:   // response
         !stack.empty
         stack.size() == 1
-        stack.peek() == elem
+        stack.peek().toString().toLowerCase() == elem.toLowerCase()
 
     }
 

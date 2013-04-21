@@ -7,17 +7,17 @@ import spock.lang.Unroll
  *
  * @author kensipe
  */
+@Unroll
 class WhereBlockSpec extends Specification {
 
     def "add stuff together"() {
 
         expect:
         1 + 2 == 3
-        'Bat' + 'man' == 'Bat man'
+        'Bat' + ' man' == 'Bat man'
         99 + 1 == 100
     }
 
-    @Unroll('#a + #b = #c')
     def "add stuff from the where body"() {
 
         expect:
@@ -25,12 +25,12 @@ class WhereBlockSpec extends Specification {
 
         where:
         a << [1, 'Bat', 99]
-        b << [2, 'man', 1]
-        c << [3, 'Bat man', '100']
+        b << [2, ' man', 1]
+//        c << [3, 'Bat man', '100']
+        c << [3, 'Bat man', 100]
 
     }
 
-    @Unroll
     def "#a + #b = #c"() {
 
         expect:
@@ -38,13 +38,13 @@ class WhereBlockSpec extends Specification {
 
         where:
         a << [1, 'Bat', 99]
-        b << [2, 'man', 1]
-        c << [3, 'Bat man', '100']
+        b << [2, ' man', 1]
+//        c << [3, 'Bat man', '100']
+        c << [3, 'Bat man', 100]
 
     }
 
-    @Unroll('#a + #b = #c')
-    def "table version of adding stuff"() {
+    def "table version of adding stuff: #a + #b = #c"() {
 
         expect:
         a + b == c
@@ -56,7 +56,6 @@ class WhereBlockSpec extends Specification {
         99    | 1     || 100
     }
 
-    @Unroll
     def "custom data provider version"() {
 
         expect:

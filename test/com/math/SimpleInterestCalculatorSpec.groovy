@@ -2,12 +2,13 @@ package com.math
 
 import spock.lang.FailsWith
 import spock.lang.Specification
+import spock.lang.Subject
 import spock.lang.Unroll
 
-// hamcrest requires, runtime of core, plus the matchers, plus that or expect
 import static spock.util.matcher.HamcrestMatchers.closeTo
 import static spock.util.matcher.HamcrestSupport.that
 
+// hamcrest requires, runtime of core, plus the matchers, plus that or expect
 /**
  *
  * @author ksipe
@@ -16,6 +17,7 @@ class SimpleInterestCalculatorSpec extends Specification {
 
     def "interest rate calcs with Simple calculator"() {
         given:
+        @Subject
         def calc = new SimpleInterestCalculator()
 
         when:
@@ -37,7 +39,7 @@ class SimpleInterestCalculatorSpec extends Specification {
         year = 2
     }
 
-    @Unroll
+    @Unroll("int: #interest amt: #amt year: #year")
     def "showing off vars list in calc"() {
         def calc = new SimpleInterestCalculator(rate: 0.05)
 
@@ -65,7 +67,7 @@ class SimpleInterestCalculatorSpec extends Specification {
 
 
     def value() {
-        100
+        10 * 10
     }
 
     @FailsWith(IllegalArgumentException)
@@ -80,7 +82,7 @@ class SimpleInterestCalculatorSpec extends Specification {
         def calc = new SimpleInterestCalculator()
 
         expect:
-        that calc.subtract(2.0, 1.1), closeTo(0.9, 0.1)
+        that calc.subtract(2.0, 1.1), closeTo(0.9, 0.01)
 
     }
 }

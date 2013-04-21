@@ -10,7 +10,7 @@ class PublisherSpec extends Specification {
 
     def "events are published to all subscribers"() {
         def subscriber1 = Mock(Subscriber)
-        def subscriber2 = Mock(Subscriber)
+        Subscriber subscriber2 = Mock()
 
         def publisher = new Publisher()
         publisher.add(subscriber1)
@@ -22,6 +22,7 @@ class PublisherSpec extends Specification {
         then:
         1 * subscriber1.receive("event")
         1 * subscriber2.receive("event")
+
     }
 
     def "events are published to all subscribers with closures"() {
@@ -37,7 +38,7 @@ class PublisherSpec extends Specification {
 
         then:
         1 * subscriber1.receive(!null)
-        1 * subscriber2.receive({ it.contains("eve")})
+        1 * subscriber2.receive({ String s -> s.contains("eve")})
         /**
          * sub1 -> the argument passed is only checked to be not null
          * sub2 -> the argument passed must contain the string "eve"
@@ -98,6 +99,8 @@ class PublisherSpec extends Specification {
 
         then:
         1 * subscriber1.receive("event") >> { throw new Exception() }
+
+        then:
         1 * subscriber2.receive("event")
     }
 
