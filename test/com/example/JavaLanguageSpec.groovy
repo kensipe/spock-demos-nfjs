@@ -15,7 +15,7 @@ class JavaLanguageSpec extends Specification {
         def friends = ["Brian", "Nate", "Neal", "Raju", "Sara", "Scott", "Venkay"]
 
         expect:
-        friends.stream().getFirst() != null
+        friends.stream().findFirst() != null
     }
 
     @Requires({ jvm.java8 })
@@ -23,6 +23,6 @@ class JavaLanguageSpec extends Specification {
         def friends = ["Brian", "Nate", "Neal", "Raju", "Sara", "Scott", "Venkay"]
 
         expect:
-        friends.stream().getFirst() != null
+        friends.stream().findFirst() != null
     }
 }
