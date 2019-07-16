@@ -1,20 +1,21 @@
-apply plugin: 'groovy'
-apply plugin: 'idea'
-apply plugin: "eclipse"
+plugins {
+  id 'groovy'
+  id 'idea'
+  id 'eclipse'
+}
 
-def spockVersion = '1.0-groovy-2.0-SNAPSHOT'
-def groovyVersion = '1.8.6'
+def spockVersion = '1.3-groovy-2.5'
+def groovyVersion = '2.5.1'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    groovy "org.codehaus.groovy:groovy-all:$groovyVersion"
-    
+    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
+
     testCompile 'junit:junit:4.10'
-    testCompile fileTree(dir: 'lib', include: '*.jar')
-    // testCompile "org.spockframework:spock-core:$spockVersion"
+    testCompile "org.spockframework:spock-core:$spockVersion"
 //    testCompile "org.spockframework:spock-spring:$spockVersion"  //need if you are doing spring... fails without the spring dependencies
     testRuntime "com.h2database:h2:1.2.147"
     testRuntime "org.hamcrest:hamcrest-core:1.3"
@@ -33,13 +34,6 @@ sourceSets {
 
 idea {
     project {
-        javaVersion = 1.6
-        jdkName = '1.6'
+        jdkName = '1.8'
     }
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.0-milestone-8'
-}
-
-
