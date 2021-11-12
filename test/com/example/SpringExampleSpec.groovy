@@ -6,7 +6,8 @@ package com.example
  */
 
 import com.acme.account.AccountDao
-import javax.annotation.Resource
+// Used as an older example but requires new annotations
+//import javax.annotation.Resource
 import spock.lang.Specification
 
 // Spring imports omitted for brevity
@@ -14,7 +15,7 @@ import spock.lang.Specification
 //@ContextConfiguration(locations = "appcontext.xml")
 class SpringExampleSpec extends Specification {
 
-    @Resource
+//    @Resource
     AccountDao email
 
 //  @Autowired

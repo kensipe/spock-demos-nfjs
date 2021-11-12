@@ -4,21 +4,27 @@ plugins {
   id 'eclipse'
 }
 
-def spockVersion = '1.3-groovy-2.5'
-def groovyVersion = '2.5.1'
+def spockVersion = '2.0-groovy-3.0'
+def groovyVersion = '3.0.8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
+    implementation "org.codehaus.groovy:groovy-all:$groovyVersion" 
+    implementation 'commons-lang:commons-lang:2.6'
 
-    testCompile 'junit:junit:4.10'
-    testCompile "org.spockframework:spock-core:$spockVersion"
-//    testCompile "org.spockframework:spock-spring:$spockVersion"  //need if you are doing spring... fails without the spring dependencies
-    testRuntime "com.h2database:h2:1.2.147"
-    testRuntime "org.hamcrest:hamcrest-core:1.3"
+    testImplementation "org.spockframework:spock-core:$spockVersion"
+
+    testImplementation "com.h2database:h2:1.4.197"
+
+    // optional dependencies for using Spock
+    testImplementation "org.hamcrest:hamcrest-core:2.2"   // only necessary if Hamcrest matchers are used
+    testRuntimeOnly "net.bytebuddy:byte-buddy:1.11.0" // allows mocking of classes (in addition to interfaces)
+    testRuntimeOnly "org.objenesis:objenesis:3.2"      // allows mocking of classes without default constructor (together with ByteBuddy or CGLIB)
+
+    // testRuntime "com.h2database:h2:1.2.147"
 }
 
 sourceSets {
@@ -34,6 +40,13 @@ sourceSets {
 
 idea {
     project {
-        jdkName = '1.8'
+        jdkName = '17'
+    }
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
     }
 }

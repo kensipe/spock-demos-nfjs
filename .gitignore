@@ -6,3 +6,8 @@ build
 *.iml
 
 .DS_Store
+
+.vscode
+.project
+.settings
+
