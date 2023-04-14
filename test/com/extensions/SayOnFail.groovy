@@ -18,5 +18,5 @@ import java.lang.annotation.Target
 
 public @interface SayOnFail {
     String value() default 'Failure is not an option'
-    String voice() default "Alex"
+    String voice() default "Jester"
 }
